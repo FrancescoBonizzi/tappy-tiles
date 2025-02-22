@@ -9,7 +9,7 @@ function App() {
             className="cursor-pointer flex flex-col items-center justify-center h-screen bg-gray-900 text-white text-center"
             initial={{scale: 0.8}}
             animate={{scale: [1, 1.1, 1]}}
-            transition={{duration: 1.5, ease: "easeInOut", repeat: Infinity, repeatType: "reverse"}}>
+            transition={{duration: 1.5, ease: "easeInOut", repeat: Infinity}}>
 
             <img src="/tappy-tiles-logo.png"
                  alt="TappyTiles Logo"
