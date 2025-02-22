@@ -11,7 +11,7 @@ Un semplice gioco in *React + Vite* con animazioni! 🎨✨
 - Se completi il gioco, le tessere ballano e parte un’esplosione di coriandoli! 🎊
 
 ## Tecnologie utilizzate
-🚀 Vite – per un setup veloce e leggero
-🎨 Tailwind CSS – per styling ed effetti animati
-🕺 Framer Motion – per transizioni fluide
-🎊 Canvas-Confetti – per l’effetto festa finale
+- 🚀 Vite
+- 🎨 Tailwind CSS
+- 🕺 Framer Motion – per animazioni giocose
+- 🎊 Canvas-Confetti – per graficare in caso di vittoria
