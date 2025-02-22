@@ -9,14 +9,24 @@ function App() {
                 src="/tappy-tiles-logo.png"
                 alt="TappyTiles Logo"
                 className="w-52 cursor-pointer rounded-xl"
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                initial={{ opacity: 1, scale: 0.8 }}
+                animate={{ opacity: 1, scale: [1, 1.1, 1], rotate: [0, 3, -3, 0] }}
+                transition={{ duration: 1.5, ease: "easeInOut", repeat: Infinity }}
+                whileTap={{ scale: 0.9, rotate: 0 }}
                 onClick={() => console.log("Logo clicked")}
             />
 
-            <p className="font-playful text-4xl opacity-80 transition-opacity duration-300 hover:opacity-100 mt-6">
-                Tocca lo schermo per iniziare!
-            </p>
+            <motion.p
+                className="font-playful text-4xl mt-6"
+                initial={{ opacity: 0.8, y: 50 }}
+                animate={{ opacity: 0.8, y: [0, -5, 0] }}
+                transition={{ duration: 1, ease: "easeInOut", repeat: Infinity }}
+                whileTap={{ scale: 0.9, opacity: 1 }}
+                whileHover={{ scale: 1.1, opacity: 1 }}
+            >
+                Tocca lo schermo per giocare!
+            </motion.p>
+
         </div>
     );
 }
