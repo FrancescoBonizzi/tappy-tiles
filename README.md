@@ -1,5 +1,7 @@
 # TappyTiles 🎉
 
+<img alt="tappy-tiles-logo.png" width="128" height="128" src="public/tappy-tiles-logo.png" />
+
 Un semplice gioco in *React + Vite* con animazioni! 🎨✨
 
 ## Come funziona?
