@@ -5,12 +5,13 @@ import {useState} from "react";
 function Menu() {
     const navigate = useNavigate();
     const [isFading, setIsFading] = useState(false);
-    const animationDurationMs = isFading ? 1000 : 1500;
+    const fadeDurationMs = 1000;
+    const animationDurationMs = isFading ? fadeDurationMs : 1500;
     const repeat = isFading ? 0 : Infinity;
 
     const handleClick = () => {
         setIsFading(true);
-        setTimeout(() => navigate("/game"), animationDurationMs);
+        setTimeout(() => navigate("/game"), fadeDurationMs);
     };
 
     return (
