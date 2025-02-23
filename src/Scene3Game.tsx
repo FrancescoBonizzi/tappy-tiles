@@ -26,7 +26,7 @@ function Scene3Game() {
         } else {
             setWrongAttempts([...wrongAttempts, num]);
             setTimeout(() => setWrongAttempts(
-                []),
+                    []),
                 500);
         }
     };
@@ -43,27 +43,46 @@ function Scene3Game() {
                 {numbers.map((num) => {
                     const isRevealed = revealed.includes(num);
                     const isWrong = wrongAttempts.includes(num);
+                    const reveleadColor = 'transparent';
+                    const wrongColor = 'red';
+                    const hiddenColor = ColorHelper.getDarkerColor(choosenColor, 0.6);
 
                     const tileColor = isRevealed
-                        ? 'transparent'
+                        ? reveleadColor
                         : isWrong
-                            ? 'red'
-                            : ColorHelper.getDarkerColor(choosenColor, 0.6);
+                            ? wrongColor
+                            : hiddenColor;
 
                     return (
                         <motion.div
                             key={num}
+                            animate={{
+                                backgroundColor: tileColor
+                            }}
+                            transition={{duration: 0.3}}
                             className={'w-50 h-50 flex items-center justify-center cursor-pointer rounded-lg shadow-lg transition-all'}
-                            style={{backgroundColor: tileColor}}
                             whileTap={{scale: 0.9}}
-                            transition={{duration: 0.5}}
                             onClick={() => handleTileClick(num)}>
 
-                            {revealed.includes(num) ? (
-                                <img src={`/tiles/${num}.jpg`} alt={`Tile ${num}`}
-                                     className="w-full h-full object-cover rounded-lg"/>
+                            {isRevealed ? (
+                                <motion.img
+                                    src={`/tiles/${num}.jpg`}
+                                    alt={`Tile ${num}`}
+                                    className="w-full h-full object-cover rounded-lg"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.5 }}
+                                />
                             ) : (
-                                <span className="text-white text-8xl font-bold font-playful">{num}</span>
+                                <motion.span
+                                    className="text-white text-8xl font-bold font-playful"
+                                    initial={{ opacity: 1 }}
+                                    animate={isWrong ? {
+                                        x: [-5, 5, -5, 5, 0]
+                                    } : {}}
+                                    transition={{ duration: 0.3 }}>
+                                    {num}
+                                </motion.span>
                             )}
                         </motion.div>
                     )
