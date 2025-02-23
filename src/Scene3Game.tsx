@@ -1,11 +1,27 @@
-function Scene3Game() {
-    return <div
-        className="flex h-screen bg-gray-900 text-white flex-col items-center justify-center">
+import {useLocation} from "react-router-dom";
+import {motion} from "motion/react"
+import Defaults from "./Defaults.ts";
 
-        <p className={"font-playful text-4xl mt-8"}>
-            Game
-        </p>
-    </div>;
+function Scene3Game() {
+    const location = useLocation();
+
+    // Estrai il colore dalla query string
+    const params = new URLSearchParams(location.search);
+    const colorParameter = params.get("color");
+    const color = colorParameter
+        ? `#${colorParameter}`
+        : Defaults.backgroundColor;
+
+    return (
+        <motion.div
+            className="flex flex-col items-center justify-center h-screen text-white text-center"
+            initial={{opacity: 0, backgroundColor: Defaults.backgroundColor}}
+            animate={{opacity: 1, backgroundColor: color}}
+            exit={{opacity: 0}}
+            transition={{duration: 0.5}}>
+
+        </motion.div>
+    );
 }
 
 export default Scene3Game;

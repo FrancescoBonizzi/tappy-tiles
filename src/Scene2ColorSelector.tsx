@@ -1,6 +1,6 @@
-import {useState} from "react";
 import {motion} from "motion/react"
 import {useNavigate} from "react-router-dom";
+import Defaults from "./Defaults.ts";
 
 const colors = [
     "#e57373",
@@ -16,16 +16,16 @@ const colors = [
 
 function Scene2ColorSelector() {
     const navigate = useNavigate();
-    const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
     const handleColorSelect = (color: string) => {
-        setSelectedColor(color);
-        setTimeout(() => navigate(`/game?color=${color}`), 500);
+        const colorWithouthHash = color.replace("#", "");
+        setTimeout(() => navigate(`/game?color=${colorWithouthHash}`), 500);
     };
 
     return (
         <motion.div
-            className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white text-center"
+            className="flex flex-col items-center justify-center h-screen text-white text-center"
+            style={{backgroundColor: Defaults.backgroundColor}}
             initial={{opacity: 0}}
             animate={{opacity: 1}}
             exit={{opacity: 0}}
@@ -35,7 +35,7 @@ function Scene2ColorSelector() {
                 {colors.map((color) => (
                     <motion.div
                         key={color}
-                        className={`w-20 h-20 rounded-lg cursor-pointer shadow-lg transition-all ${selectedColor === color ? "scale-110" : ""}`}
+                        className={`w-20 h-20 rounded-lg cursor-pointer shadow-lg transition-all}`}
                         style={{backgroundColor: color}}
                         whileHover={{scale: 1.1}}
                         whileTap={{scale: 0.9}}
