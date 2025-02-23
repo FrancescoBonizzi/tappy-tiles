@@ -11,7 +11,7 @@ function Scene1StartingMenu() {
 
     const handleClick = () => {
         setIsFading(true);
-        setTimeout(() => navigate("/game"), fadeDurationMs);
+        setTimeout(() => navigate("/choose-color"), fadeDurationMs);
     };
 
     return (

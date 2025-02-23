@@ -8,7 +8,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Scene1StartingMenu />} />
-                <Route path="/colorSelector" element={<Scene2ColorSelector />} />
+                <Route path="/choose-color" element={<Scene2ColorSelector />} />
                 <Route path="/game" element={<Scene3Game />} />
             </Routes>
         </Router>
