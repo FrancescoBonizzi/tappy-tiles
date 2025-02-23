@@ -25,7 +25,9 @@ function Scene3Game() {
             setCurrentNumber(currentNumber + 1);
         } else {
             setWrongAttempts([...wrongAttempts, num]);
-            setTimeout(() => setWrongAttempts(wrongAttempts.filter(n => n !== num)), 500);
+            setTimeout(() => setWrongAttempts(
+                []),
+                500);
         }
     };
 
@@ -46,7 +48,7 @@ function Scene3Game() {
                         ? 'transparent'
                         : isWrong
                             ? 'red'
-                            : ColorHelper.getComplementaryColor(choosenColor);
+                            : ColorHelper.getDarkerColor(choosenColor, 0.6);
 
                     return (
                         <motion.div
@@ -54,6 +56,7 @@ function Scene3Game() {
                             className={'w-50 h-50 flex items-center justify-center cursor-pointer rounded-lg shadow-lg transition-all'}
                             style={{backgroundColor: tileColor}}
                             whileTap={{scale: 0.9}}
+                            transition={{duration: 0.5}}
                             onClick={() => handleTileClick(num)}>
 
                             {revealed.includes(num) ? (
