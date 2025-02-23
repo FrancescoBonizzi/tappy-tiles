@@ -2,7 +2,7 @@ import {motion} from "motion/react"
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 
-function Menu() {
+function Scene1StartingMenu() {
     const navigate = useNavigate();
     const [isFading, setIsFading] = useState(false);
     const fadeDurationMs = 1000;
@@ -37,4 +37,4 @@ function Menu() {
     );
 }
 
-export default Menu;
+export default Scene1StartingMenu;
