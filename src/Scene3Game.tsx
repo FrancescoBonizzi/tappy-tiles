@@ -57,7 +57,7 @@ function Scene3Game() {
             exit={{opacity: 0}}
             transition={{duration: 0.5}}>
 
-            <div className="grid grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-4">
                 {numbers.map((num) => {
                     const isRevealed = revealed.includes(num);
                     const isWrong = wrongAttempts.includes(num);
@@ -80,7 +80,7 @@ function Scene3Game() {
                                 backgroundColor: tileColor
                             }}
                             transition={{duration: 0.3}}
-                            className={`w-50 h-50 flex items-center justify-center cursor-pointer rounded-lg transition-all ${shadowClass}`}
+                            className={`w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-50 lg:h-50 flex items-center justify-center cursor-pointer rounded-lg transition-all ${shadowClass}`}
                             whileTap={{scale: 0.9}}
                             onClick={() => handleTileClick(num)}>
 
@@ -105,7 +105,7 @@ function Scene3Game() {
                                 </div>
                             ) : (
                                 <motion.span
-                                    className="text-white text-8xl font-bold font-playful"
+                                    className="text-white text-5xl sm:text-6xl md:text-8xl font-bold font-playful"
                                     initial={{ opacity: 1 }}
                                     animate={isWrong ? {
                                         x: [-5, 5, -5, 5, 0]
@@ -121,7 +121,7 @@ function Scene3Game() {
 
             {gameCompleted && (
                 <motion.button
-                    className="mt-6 p-6 bg-white cursor-pointer text-black rounded-full shadow-lg text-6xl font-bold flex items-center justify-center"
+                    className="mt-6 p-6 bg-white cursor-pointer text-black rounded-full shadow-lg text-4xl sm:text-6xl font-bold flex items-center justify-center"
                     initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
                     animate={{ opacity: 1, scale: 1, rotate: 0 }}
                     whileHover={{ scale: 1.1, rotate: 10 }}
