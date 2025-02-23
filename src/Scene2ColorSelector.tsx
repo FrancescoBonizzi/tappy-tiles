@@ -40,6 +40,7 @@ function Scene2ColorSelector() {
                         style={{backgroundColor: color}}
                         whileHover={{scale: 1.1}}
                         whileTap={{scale: 0.9}}
+                        transition={{ease: "linear", duration: 0.2}}
                         onClick={() => handleColorSelect(color)}
                     />
                 ))}
