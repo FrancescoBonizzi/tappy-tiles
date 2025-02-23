@@ -69,9 +69,9 @@ function Scene3Game() {
                                     src={`/tiles/${num}.jpg`}
                                     alt={`Tile ${num}`}
                                     className="w-full h-full object-cover rounded-lg"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ duration: 0.5 }}
+                                    initial={{ opacity: 0, scale: 0.5, rotateY: 90 }}
+                                    animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                                    transition={{ duration: 0.5, ease: "easeOut" }}
                                 />
                             ) : (
                                 <motion.span
