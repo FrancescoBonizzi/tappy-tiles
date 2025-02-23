@@ -2,15 +2,16 @@ import {useLocation} from "react-router-dom";
 import {motion} from "motion/react"
 import Defaults from "./Defaults.ts";
 import {useMemo, useState} from "react";
+import ColorHelper from "./ColorHelper.ts";
 
 function Scene3Game() {
     const location = useLocation();
 
     // Estrai il colore dalla query string
     const params = new URLSearchParams(location.search);
-    const colorParameter = params.get("color");
-    const color = colorParameter
-        ? `#${colorParameter}`
+    const choosenColorParameter = params.get("color");
+    const choosenColor = choosenColorParameter
+        ? `#${choosenColorParameter}`
         : Defaults.backgroundColor;
 
     const [currentNumber, setCurrentNumber] = useState(1);
@@ -32,27 +33,38 @@ function Scene3Game() {
         <motion.div
             className="flex flex-col items-center justify-center h-screen text-white text-center"
             initial={{opacity: 0, backgroundColor: Defaults.backgroundColor}}
-            animate={{opacity: 1, backgroundColor: color}}
+            animate={{opacity: 1, backgroundColor: choosenColor}}
             exit={{opacity: 0}}
             transition={{duration: 0.5}}>
 
             <div className="grid grid-cols-5 gap-4">
-                {numbers.map((num) => (
-                    <motion.div
-                        key={num}
-                        className={`w-50 h-50 flex items-center justify-center font-bold cursor-pointer rounded-lg shadow-lg transition-all 
-                            ${revealed.includes(num) ? "bg-transparent" : "bg-gray-700"} 
-                            ${wrongAttempts.includes(num) ? "bg-red-500" : ""}`}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={() => handleTileClick(num)}
-                    >
-                        {revealed.includes(num) ? (
-                            <img src={`/tiles/${num}.jpg`} alt={`Tile ${num}`} className="w-full h-full object-cover rounded-lg" />
-                        ) : (
-                            <span className="text-white text-8xl">{num}</span>
-                        )}
-                    </motion.div>
-                ))}
+                {numbers.map((num) => {
+                    const isRevealed = revealed.includes(num);
+                    const isWrong = wrongAttempts.includes(num);
+
+                    const tileColor = isRevealed
+                        ? 'transparent'
+                        : isWrong
+                            ? 'bg-red-500'
+                            : ColorHelper.getComplementaryColor(choosenColor);
+
+                    return (
+                        <motion.div
+                            key={num}
+                            className={'z-50 h-50 flex items-center justify-center cursor-pointer rounded-lg shadow-lg transition-all'}
+                            style={{backgroundColor: tileColor}}
+                            whileTap={{scale: 0.9}}
+                            onClick={() => handleTileClick(num)}>
+
+                            {revealed.includes(num) ? (
+                                <img src={`/tiles/${num}.jpg`} alt={`Tile ${num}`}
+                                     className="w-full h-full object-cover rounded-lg"/>
+                            ) : (
+                                <span className="text-white text-8xl font-bold font-playful">{num}</span>
+                            )}
+                        </motion.div>
+                    )
+                })}
             </div>
 
         </motion.div>
@@ -60,7 +72,7 @@ function Scene3Game() {
 }
 
 const getRandomNumbers = () => {
-    return Array.from({ length: 10 }, (_, i) => i + 1)
+    return Array.from({length: 10}, (_, i) => i + 1)
         .sort(() => Math.random() - 0.5);
 }
 
