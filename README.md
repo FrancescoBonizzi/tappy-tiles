@@ -1,6 +1,6 @@
 # TappyTiles 🎉
 
-<img alt="tappy-tiles-logo.jpg" width="128" height="128" src="public/tappy-tiles-logo.png" />
+<img alt="Il logo di Tappy Tiles!" width="128" height="128" src="public/tappy-tiles-logo.jpg" />
 
 Un semplice gioco in *React + Vite* con animazioni! 🎨✨
 
