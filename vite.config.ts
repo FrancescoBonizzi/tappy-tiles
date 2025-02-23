@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => ({
     plugins: [react(), tailwindcss()],
     base: mode === 'development'
         ? '/'
-        : '/assets/tappy-tiles/', // I need this to serve with jeckyll on my personal website
+        : '/tappy-tiles', // I need this to serve with jeckyll on my personal website
     build: {
         outDir: 'dist',
     },
