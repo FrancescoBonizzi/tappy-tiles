@@ -67,6 +67,8 @@ function Scene3Game() {
                             ? wrongColor
                             : hiddenColor;
 
+                    const shadowClass = isRevealed ? null : 'shadow-lg';
+
                     return (
                         <motion.div
                             key={num}
@@ -74,7 +76,7 @@ function Scene3Game() {
                                 backgroundColor: tileColor
                             }}
                             transition={{duration: 0.3}}
-                            className={'w-50 h-50 flex items-center justify-center cursor-pointer rounded-lg shadow-lg transition-all'}
+                            className={`w-50 h-50 flex items-center justify-center cursor-pointer rounded-lg transition-all ${shadowClass}`}
                             whileTap={{scale: 0.9}}
                             onClick={() => handleTileClick(num)}>
 
