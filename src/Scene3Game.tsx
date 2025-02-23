@@ -1,4 +1,4 @@
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {motion} from "motion/react"
 import Defaults from "./Defaults.ts";
 import {useEffect, useMemo, useState} from "react";
@@ -7,6 +7,7 @@ import confetti from "canvas-confetti";
 
 function Scene3Game() {
     const location = useLocation();
+    const navigate = useNavigate();
 
     // Estrai il colore dalla query string
     const params = new URLSearchParams(location.search);
@@ -31,13 +32,6 @@ function Scene3Game() {
             });
         }
     }, [revealed]);
-
-    const restartGame = () => {
-        setCurrentNumber(1);
-        setRevealed([]);
-        setWrongAttempts([]);
-        setGameCompleted(false);
-    };
 
     const handleTileClick = (num: number) => {
         if (num === currentNumber) {
@@ -115,7 +109,7 @@ function Scene3Game() {
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
-                    onClick={restartGame}
+                    onClick={() => navigate('/choose-color')}
                 >
                     Ricomincia
                 </motion.button>
