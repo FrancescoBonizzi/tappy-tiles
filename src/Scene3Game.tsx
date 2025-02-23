@@ -81,14 +81,24 @@ function Scene3Game() {
                             onClick={() => handleTileClick(num)}>
 
                             {isRevealed ? (
-                                <motion.img
-                                    src={`/tiles/${num}.jpg`}
-                                    alt={`Tile ${num}`}
-                                    className="w-full h-full object-cover rounded-lg"
-                                    initial={{ opacity: 0, scale: 0.5, rotateY: 90 }}
-                                    animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                                    transition={{ duration: 0.5, ease: "easeOut" }}
-                                />
+                                <div className="relative w-full h-full">
+                                    <motion.img
+                                        src={`/tiles/${num}.jpg`}
+                                        alt={`Tile ${num}`}
+                                        className="w-full h-full object-cover rounded-lg"
+                                        initial={{ opacity: 0, scale: 0.5, rotateY: 90 }}
+                                        animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                                        transition={{ duration: 0.5, ease: "easeOut" }}
+                                    />
+                                    <motion.span
+                                        className="absolute bottom-0 left-0 w-full text-white font-playful text-lg font-bold text-center bg-black bg-opacity-50 py-1 rounded-t-2xl"
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5 }}
+                                        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", opacity: 1 }}>
+                                        {num}
+                                    </motion.span>
+                                </div>
                             ) : (
                                 <motion.span
                                     className="text-white text-8xl font-bold font-playful"
