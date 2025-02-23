@@ -1,6 +1,7 @@
 import {motion} from "motion/react"
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
+import logo from "./assets/tappy-tiles-logo.png";
 
 function Scene1StartingMenu() {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ function Scene1StartingMenu() {
                 animate={{scale: [1, 1.1, 1], opacity: isFading ? 0 : 1}}
                 transition={{duration: animationDurationMs / 1000, ease: "easeInOut", repeat: repeat}}>
 
-                <img src="/tappy-tiles-logo.png"
+                <img src={logo}
                      alt="TappyTiles Logo"
                      className="w-52 rounded-xl"
                 />

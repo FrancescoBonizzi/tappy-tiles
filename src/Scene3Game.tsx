@@ -5,6 +5,29 @@ import {useEffect, useMemo, useState} from "react";
 import ColorHelper from "./ColorHelper.ts";
 import confetti from "canvas-confetti";
 import { FaRedo } from "react-icons/fa";
+import tile1 from "./assets/tiles/1.jpg";
+import tile2 from "./assets/tiles/2.jpg";
+import tile3 from "./assets/tiles/3.jpg";
+import tile4 from "./assets/tiles/4.jpg";
+import tile5 from "./assets/tiles/5.jpg";
+import tile6 from "./assets/tiles/6.jpg";
+import tile7 from "./assets/tiles/7.jpg";
+import tile8 from "./assets/tiles/8.jpg";
+import tile9 from "./assets/tiles/9.jpg";
+import tile10 from "./assets/tiles/10.jpg";
+
+const tilesMap: Record<number, string> = {
+    1: tile1,
+    2: tile2,
+    3: tile3,
+    4: tile4,
+    5: tile5,
+    6: tile6,
+    7: tile7,
+    8: tile8,
+    9: tile9,
+    10: tile10
+};
 
 function Scene3Game() {
     const location = useLocation();
@@ -87,7 +110,7 @@ function Scene3Game() {
                             {isRevealed ? (
                                 <div className="relative w-full h-full">
                                     <motion.img
-                                        src={`/tiles/${num}.jpg`}
+                                        src={tilesMap[num]}
                                         alt={`Tile ${num}`}
                                         className="w-full h-full object-cover rounded-lg"
                                         initial={{ opacity: 0, scale: 0.5, rotateY: 90 }}
