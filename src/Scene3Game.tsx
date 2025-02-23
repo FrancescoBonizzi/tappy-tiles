@@ -4,6 +4,7 @@ import Defaults from "./Defaults.ts";
 import {useEffect, useMemo, useState} from "react";
 import ColorHelper from "./ColorHelper.ts";
 import confetti from "canvas-confetti";
+import { FaRedo } from "react-icons/fa";
 
 function Scene3Game() {
     const location = useLocation();
@@ -26,9 +27,12 @@ function Scene3Game() {
         if (revealed.length === 10) {
             setGameCompleted(true);
             confetti({
-                particleCount: 200,
-                spread: 70,
-                origin: { y: 0.6 },
+                particleCount: 500,
+                spread: 120,
+                startVelocity: 60,
+                scalar: 1.2,
+                origin: { y: 0.5 },
+                ticks: 500,
             });
         }
     }, [revealed]);
@@ -91,9 +95,9 @@ function Scene3Game() {
                                         transition={{ duration: 0.5, ease: "easeOut" }}
                                     />
                                     <motion.span
-                                        className="absolute bottom-0 left-0 w-full text-white font-playful text-lg font-bold text-center bg-black bg-opacity-50 py-1 rounded-t-2xl"
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
+                                        className="absolute bottom-0 left-0 w-full text-white font-playful text-lg font-bold text-center bg-black bg-opacity-50 py-1 rounded-lg"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
                                         transition={{ duration: 0.5 }}
                                         style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", opacity: 1 }}>
                                         {num}
@@ -117,13 +121,15 @@ function Scene3Game() {
 
             {gameCompleted && (
                 <motion.button
-                    className="mt-6 px-6 py-3 bg-white text-black rounded-xl shadow-lg text-2xl font-bold"
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    className="mt-6 p-6 bg-white cursor-pointer text-black rounded-full shadow-lg text-6xl font-bold flex items-center justify-center"
+                    initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    whileHover={{ scale: 1.1, rotate: 10 }}
+                    whileTap={{ scale: 0.9, rotate: -10 }}
                     transition={{ duration: 0.5 }}
                     onClick={() => navigate('/choose-color')}
                 >
-                    Ricomincia
+                    <FaRedo />
                 </motion.button>
             )}
 
