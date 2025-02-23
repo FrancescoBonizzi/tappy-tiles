@@ -1,8 +1,9 @@
 import {useLocation} from "react-router-dom";
 import {motion} from "motion/react"
 import Defaults from "./Defaults.ts";
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import ColorHelper from "./ColorHelper.ts";
+import confetti from "canvas-confetti";
 
 function Scene3Game() {
     const location = useLocation();
@@ -18,6 +19,25 @@ function Scene3Game() {
     const [revealed, setRevealed] = useState<number[]>([]);
     const [wrongAttempts, setWrongAttempts] = useState<number[]>([]);
     const numbers = useMemo(() => getRandomNumbers(), []);
+    const [gameCompleted, setGameCompleted] = useState(false);
+
+    useEffect(() => {
+        if (revealed.length === 10) {
+            setGameCompleted(true);
+            confetti({
+                particleCount: 200,
+                spread: 70,
+                origin: { y: 0.6 },
+            });
+        }
+    }, [revealed]);
+
+    const restartGame = () => {
+        setCurrentNumber(1);
+        setRevealed([]);
+        setWrongAttempts([]);
+        setGameCompleted(false);
+    };
 
     const handleTileClick = (num: number) => {
         if (num === currentNumber) {
@@ -88,6 +108,18 @@ function Scene3Game() {
                     )
                 })}
             </div>
+
+            {gameCompleted && (
+                <motion.button
+                    className="mt-6 px-6 py-3 bg-white text-black rounded-xl shadow-lg text-2xl font-bold"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    onClick={restartGame}
+                >
+                    Ricomincia
+                </motion.button>
+            )}
 
         </motion.div>
     );
