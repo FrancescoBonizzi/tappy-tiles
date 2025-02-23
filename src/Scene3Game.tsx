@@ -45,13 +45,13 @@ function Scene3Game() {
                     const tileColor = isRevealed
                         ? 'transparent'
                         : isWrong
-                            ? 'bg-red-500'
+                            ? 'red'
                             : ColorHelper.getComplementaryColor(choosenColor);
 
                     return (
                         <motion.div
                             key={num}
-                            className={'z-50 h-50 flex items-center justify-center cursor-pointer rounded-lg shadow-lg transition-all'}
+                            className={'w-50 h-50 flex items-center justify-center cursor-pointer rounded-lg shadow-lg transition-all'}
                             style={{backgroundColor: tileColor}}
                             whileTap={{scale: 0.9}}
                             onClick={() => handleTileClick(num)}>
