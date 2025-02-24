@@ -96,20 +96,9 @@ function Scene3Game() {
             transition={{duration: 0.5}}>
 
             <div className="flex justify-center gap-2 mb-4">
-                {[...Array(maxAttempts)].map((_, index) => (
-                    <motion.div
-                        key={index}
-                        style={{
-                            backgroundColor: index < wrongAttemptsCount
-                                ? ColorHelper.getDarkerColor(choosenColor, 0.6)
-                                : 'red'
-                        }}
-                        className={`w-8 h-8 rounded-full`}
-                        initial={{scale: 1}}
-                        animate={{scale: index < wrongAttemptsCount ? 0.8 : 1}}
-                        transition={{duration: 0.3}}
-                    />
-                ))}
+                <LifesIndicator
+                    wrongAttemptsCount={wrongAttemptsCount}
+                    choosenColor={choosenColor}/>
             </div>
 
             <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -139,36 +128,10 @@ function Scene3Game() {
                             whileTap={{scale: 0.9}}
                             onClick={() => handleTileClick(num)}>
 
-                            {isRevealed ? (
-                                <div className="relative w-full h-full">
-                                    <motion.img
-                                        src={tilesArray[num - 1]}
-                                        alt={`Tile ${num}`}
-                                        className="w-full h-full object-cover rounded-lg"
-                                        initial={{opacity: 0, rotateY: 90}}
-                                        animate={{opacity: 1, rotateY: 0}}
-                                        transition={{duration: 0.5, ease: "easeOut"}}
-                                    />
-                                    <motion.span
-                                        className="absolute bottom-0 left-0 w-full text-white font-playful text-lg font-bold text-center bg-black bg-opacity-50 py-1 rounded-lg"
-                                        initial={{opacity: 0}}
-                                        animate={{opacity: 1}}
-                                        transition={{duration: 0.5}}
-                                        style={{backgroundColor: "rgba(0, 0, 0, 0.5)", opacity: 1}}>
-                                        {num}
-                                    </motion.span>
-                                </div>
-                            ) : (
-                                <motion.span
-                                    className="text-white text-5xl sm:text-6xl md:text-8xl font-bold font-playful"
-                                    initial={{opacity: 1}}
-                                    animate={isWrong ? {
-                                        x: [-5, 5, -5, 5, 0]
-                                    } : {}}
-                                    transition={{duration: 0.3}}>
-                                    {num}
-                                </motion.span>
-                            )}
+                            {isRevealed
+                                ? <ReveledTile num={num}/>
+                                : <HiddenTile num={num} isWrong={isWrong}/>
+                            }
                         </motion.div>
                     )
                 })}
@@ -183,6 +146,60 @@ function Scene3Game() {
 const getRandomNumbers = () => {
     return Array.from({length: 10}, (_, i) => i + 1)
         .sort(() => Math.random() - 0.5);
+}
+
+const HiddenTile = ({num, isWrong}: { num: number, isWrong: boolean }) => {
+    return (
+        <motion.span
+            className="text-white text-5xl sm:text-6xl md:text-8xl font-bold font-playful"
+            initial={{opacity: 1}}
+            animate={isWrong ? {
+                x: [-5, 5, -5, 5, 0]
+            } : {}}
+            transition={{duration: 0.3}}>
+            {num}
+        </motion.span>
+    );
+}
+
+const ReveledTile = ({num}: { num: number }) => {
+    return (
+        <div className="relative w-full h-full">
+            <motion.img
+                src={tilesArray[num - 1]}
+                alt={`Tile ${num}`}
+                className="w-full h-full object-cover rounded-lg"
+                initial={{opacity: 0, rotateY: 90}}
+                animate={{opacity: 1, rotateY: 0}}
+                transition={{duration: 0.5, ease: "easeOut"}}
+            />
+            <motion.span
+                className="absolute bottom-0 left-0 w-full text-white font-playful text-lg font-bold text-center bg-black bg-opacity-50 py-1 rounded-lg"
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{duration: 0.5}}
+                style={{backgroundColor: "rgba(0, 0, 0, 0.5)", opacity: 1}}>
+                {num}
+            </motion.span>
+        </div>
+    );
+}
+
+const LifesIndicator = ({wrongAttemptsCount, choosenColor}: { wrongAttemptsCount: number, choosenColor: string }) => {
+    return [...Array(maxAttempts)].map((_, index) => (
+        <motion.div
+            key={index}
+            style={{
+                backgroundColor: index < wrongAttemptsCount
+                    ? ColorHelper.getDarkerColor(choosenColor, 0.6)
+                    : 'red'
+            }}
+            className={`w-8 h-8 rounded-full`}
+            initial={{scale: 1}}
+            animate={{scale: index < wrongAttemptsCount ? 0.8 : 1}}
+            transition={{duration: 0.3}}
+        />
+    ));
 }
 
 export default Scene3Game;
