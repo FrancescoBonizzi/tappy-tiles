@@ -200,9 +200,10 @@ const LifesIndicator = ({wrongAttemptsCount, choosenColor}: { wrongAttemptsCount
                             style={{
                                 backgroundColor: isSafe
                                     ? ColorHelper.getDarkerColor(choosenColor, 0.6)
-                                    : 'red'
+                                    : 'red',
+                                boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.5)'
                             }}
-                            className="w-8 h-8 rounded-full"
+                            className="w-8 h-8 rounded-lg"
                             initial={{scale: 1}}
                             animate={{
                                 scale: isSafe ? 1 : 1.2
