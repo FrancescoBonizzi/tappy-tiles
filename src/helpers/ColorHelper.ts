@@ -1,3 +1,5 @@
+import Defaults from "../Defaults.ts";
+
 export default {
 
     getDarkerColor: (hex: string, factor: number) => {
@@ -16,6 +18,14 @@ export default {
         const bHex = b.toString(16).padStart(2, "0");
 
         return `#${rHex}${gHex}${bHex}`;
+    },
+
+    getColorFromPageParams: () => {
+        const params = new URLSearchParams(location.search);
+        const choosenColorParameter = params.get("color");
+        return choosenColorParameter
+            ? `#${choosenColorParameter}`
+            : Defaults.backgroundColor;
     }
 
 }

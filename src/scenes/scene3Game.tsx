@@ -1,4 +1,4 @@
-import {useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {motion} from "motion/react"
 import Defaults from "../Defaults.ts";
 import {useEffect, useMemo, useState} from "react";
@@ -15,7 +15,6 @@ import tile8 from "./../assets/tiles/8.jpg";
 import tile9 from "./../assets/tiles/9.jpg";
 import tile10 from "./../assets/tiles/10.jpg";
 import CollectionsHelper from "../helpers/CollectionsHelper.ts";
-import RestartButton from "../components/RestartButton.tsx";
 
 const tilesArray = CollectionsHelper.shuffleArray([
     tile1,
@@ -34,15 +33,9 @@ const maxAttempts = 3;
 const errorColor = '#ff0059';
 
 function Scene3Game() {
-    const location = useLocation();
     const navigate = useNavigate();
-
-    // Estrai il colore dalla query string
-    const params = new URLSearchParams(location.search);
-    const choosenColorParameter = params.get("color");
-    const choosenColor = choosenColorParameter
-        ? `#${choosenColorParameter}`
-        : Defaults.backgroundColor;
+    const choosenColor = ColorHelper.getColorFromPageParams();
+    const choosenColorWithouthHash = choosenColor.replace("#", "");
 
     const [currentNumber, setCurrentNumber] = useState(1);
     const [revealed, setRevealed] = useState<number[]>([]);
@@ -68,6 +61,9 @@ function Scene3Game() {
                 origin: {y: 0.5},
                 ticks: 500,
             });
+            setTimeout(() => {
+                navigate(`/win?color=${choosenColorWithouthHash}`);
+            }, 2000);
         }
     }, [revealed]);
 
@@ -138,8 +134,6 @@ function Scene3Game() {
                     )
                 })}
             </div>
-
-            {gameCompleted && <RestartButton/>}
 
         </motion.div>
     );
