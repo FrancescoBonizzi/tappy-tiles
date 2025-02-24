@@ -2,7 +2,7 @@ import {motion} from "motion/react";
 import {FaRedo} from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
 
-const RestartGame = () => {
+const RestartButton = () => {
 
     const navigate = useNavigate();
 
@@ -21,4 +21,4 @@ const RestartGame = () => {
     );
 }
 
-export default RestartGame;
+export default RestartButton;

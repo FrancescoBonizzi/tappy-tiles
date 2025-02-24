@@ -1,5 +1,5 @@
 import {motion} from "motion/react"
-import RestartGame from "../components/RestartGame.tsx";
+import RestartButton from "../components/RestartButton.tsx";
 
 function Scene4GameOver() {
     return (
@@ -17,7 +17,7 @@ function Scene4GameOver() {
                 😢 Ops! Vuoi riprovare?
             </motion.p>
 
-            <RestartGame/>
+            <RestartButton/>
         </motion.div>
     );
 }

@@ -15,7 +15,7 @@ import tile8 from "./../assets/tiles/8.jpg";
 import tile9 from "./../assets/tiles/9.jpg";
 import tile10 from "./../assets/tiles/10.jpg";
 import CollectionsHelper from "../helpers/CollectionsHelper.ts";
-import RestartGame from "../components/RestartGame.tsx";
+import RestartButton from "../components/RestartButton.tsx";
 
 const tilesArray = CollectionsHelper.shuffleArray([
     tile1,
@@ -137,7 +137,7 @@ function Scene3Game() {
                 })}
             </div>
 
-            {gameCompleted && <RestartGame/>}
+            {gameCompleted && <RestartButton/>}
 
         </motion.div>
     );
