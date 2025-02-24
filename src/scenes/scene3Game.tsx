@@ -4,7 +4,7 @@ import Defaults from "../Defaults.ts";
 import {useEffect, useMemo, useState} from "react";
 import ColorHelper from "../helpers/ColorHelper.ts";
 import confetti from "canvas-confetti";
-import { FaRedo } from "react-icons/fa";
+import {FaRedo} from "react-icons/fa";
 import tile1 from "./../assets/tiles/1.jpg";
 import tile2 from "./../assets/tiles/2.jpg";
 import tile3 from "./../assets/tiles/3.jpg";
@@ -30,6 +30,8 @@ const tilesArray = CollectionsHelper.shuffleArray([
     tile10
 ]);
 
+const maxAttempts = 3;
+
 function Scene3Game() {
     const location = useLocation();
     const navigate = useNavigate();
@@ -44,8 +46,10 @@ function Scene3Game() {
     const [currentNumber, setCurrentNumber] = useState(1);
     const [revealed, setRevealed] = useState<number[]>([]);
     const [wrongAttempts, setWrongAttempts] = useState<number[]>([]);
+    const [wrongAttemptsCount, setWrongAttemptsCount] = useState(0);
     const numbers = useMemo(() => getRandomNumbers(), []);
     const [gameCompleted, setGameCompleted] = useState(false);
+    const isGameOver = wrongAttemptsCount >= maxAttempts;
 
     useEffect(() => {
         if (revealed.length === 10) {
@@ -55,17 +59,22 @@ function Scene3Game() {
                 spread: 120,
                 startVelocity: 60,
                 scalar: 1.2,
-                origin: { y: 0.5 },
+                origin: {y: 0.5},
                 ticks: 500,
             });
         }
     }, [revealed]);
 
     const handleTileClick = (num: number) => {
+
+        if (isGameOver)
+            return;
+
         if (num === currentNumber) {
             setRevealed([...revealed, num]);
             setCurrentNumber(currentNumber + 1);
         } else {
+            setWrongAttemptsCount(prev => prev + 1);
             setWrongAttempts([...wrongAttempts, num]);
             setTimeout(() => setWrongAttempts(
                     []),
@@ -80,6 +89,23 @@ function Scene3Game() {
             animate={{opacity: 1, backgroundColor: choosenColor}}
             exit={{opacity: 0}}
             transition={{duration: 0.5}}>
+
+            <div className="flex justify-center gap-2 mb-4">
+                {[...Array(maxAttempts)].map((_, index) => (
+                    <motion.div
+                        key={index}
+                        style={{
+                            backgroundColor: index < wrongAttemptsCount
+                                ? ColorHelper.getDarkerColor(choosenColor, 0.6)
+                                : 'red'
+                        }}
+                        className={`w-8 h-8 rounded-full`}
+                        initial={{scale: 1}}
+                        animate={{scale: index < wrongAttemptsCount ? 0.8 : 1}}
+                        transition={{duration: 0.3}}
+                    />
+                ))}
+            </div>
 
             <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {numbers.map((num) => {
@@ -114,27 +140,27 @@ function Scene3Game() {
                                         src={tilesArray[num - 1]}
                                         alt={`Tile ${num}`}
                                         className="w-full h-full object-cover rounded-lg"
-                                        initial={{ opacity: 0, rotateY: 90 }}
-                                        animate={{ opacity: 1, rotateY: 0 }}
-                                        transition={{ duration: 0.5, ease: "easeOut" }}
+                                        initial={{opacity: 0, rotateY: 90}}
+                                        animate={{opacity: 1, rotateY: 0}}
+                                        transition={{duration: 0.5, ease: "easeOut"}}
                                     />
                                     <motion.span
                                         className="absolute bottom-0 left-0 w-full text-white font-playful text-lg font-bold text-center bg-black bg-opacity-50 py-1 rounded-lg"
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ duration: 0.5 }}
-                                        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", opacity: 1 }}>
+                                        initial={{opacity: 0}}
+                                        animate={{opacity: 1}}
+                                        transition={{duration: 0.5}}
+                                        style={{backgroundColor: "rgba(0, 0, 0, 0.5)", opacity: 1}}>
                                         {num}
                                     </motion.span>
                                 </div>
                             ) : (
                                 <motion.span
                                     className="text-white text-5xl sm:text-6xl md:text-8xl font-bold font-playful"
-                                    initial={{ opacity: 1 }}
+                                    initial={{opacity: 1}}
                                     animate={isWrong ? {
                                         x: [-5, 5, -5, 5, 0]
                                     } : {}}
-                                    transition={{ duration: 0.3 }}>
+                                    transition={{duration: 0.3}}>
                                     {num}
                                 </motion.span>
                             )}
@@ -146,14 +172,14 @@ function Scene3Game() {
             {gameCompleted && (
                 <motion.button
                     className="mt-4 sm:p-2 md:p-4 lg:p-6 bg-white cursor-pointer text-black rounded-full shadow-lg lg:text-6xl md:text-4xl sm:text-2xl font-bold flex items-center justify-center"
-                    initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
-                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                    whileHover={{ scale: 1.1, rotate: 10 }}
-                    whileTap={{ scale: 0.9, rotate: -10 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{opacity: 0, scale: 0.5, rotate: -90}}
+                    animate={{opacity: 1, scale: 1, rotate: 0}}
+                    whileHover={{scale: 1.1, rotate: 10}}
+                    whileTap={{scale: 0.9, rotate: -10}}
+                    transition={{duration: 0.5}}
                     onClick={() => navigate('/choose-color')}
                 >
-                    <FaRedo />
+                    <FaRedo/>
                 </motion.button>
             )}
 
