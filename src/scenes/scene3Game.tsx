@@ -95,11 +95,13 @@ function Scene3Game() {
             exit={{opacity: 0}}
             transition={{duration: 0.5}}>
 
-            <div className="flex justify-center gap-2 mb-4">
-                <LifesIndicator
-                    wrongAttemptsCount={wrongAttemptsCount}
-                    choosenColor={choosenColor}/>
-            </div>
+            {!gameCompleted &&
+                <div className="flex justify-center gap-2 mb-4">
+                    <LifesIndicator
+                        wrongAttemptsCount={wrongAttemptsCount}
+                        choosenColor={choosenColor}/>
+                </div>
+            }
 
             <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {numbers.map((num) => {

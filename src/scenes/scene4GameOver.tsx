@@ -14,7 +14,7 @@ function Scene4GameOver() {
                 initial={{scale: 0.5}}
                 animate={{scale: 1.2}}
                 transition={{duration: 0.5, yoyo: Infinity}}>
-                😢 Ops! Vuoi riprovare?
+                😢 Ops! Riproviamo?
             </motion.p>
 
             <RestartButton/>
