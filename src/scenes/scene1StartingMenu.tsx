@@ -1,7 +1,7 @@
 import {motion} from "motion/react"
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import logo from "./assets/tappy-tiles-logo.jpg";
+import logo from "./../assets/tappy-tiles-logo.jpg";
 
 function Scene1StartingMenu() {
     const navigate = useNavigate();

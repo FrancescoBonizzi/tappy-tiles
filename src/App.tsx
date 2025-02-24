@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Scene1StartingMenu from "./Scene1StartingMenu.tsx";
-import Scene2ColorSelector from "./Scene2ColorSelector.tsx";
-import Scene3Game from "./Scene3Game.tsx";
+import Scene1StartingMenu from "./scenes/scene1StartingMenu.tsx";
+import Scene2ColorSelector from "./scenes/scene2ColorSelector.tsx";
+import Scene3Game from "./scenes/scene3Game.tsx";
 
 function App() {
 

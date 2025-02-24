@@ -1,6 +1,6 @@
 import {motion} from "motion/react"
 import {useNavigate} from "react-router-dom";
-import Defaults from "./Defaults.ts";
+import Defaults from "../Defaults.ts";
 
 const colors = [
     "#e57373",

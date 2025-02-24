@@ -1,21 +1,21 @@
 import {useLocation, useNavigate} from "react-router-dom";
 import {motion} from "motion/react"
-import Defaults from "./Defaults.ts";
+import Defaults from "../Defaults.ts";
 import {useEffect, useMemo, useState} from "react";
-import ColorHelper from "./helpers/ColorHelper.ts";
+import ColorHelper from "../helpers/ColorHelper.ts";
 import confetti from "canvas-confetti";
 import { FaRedo } from "react-icons/fa";
-import tile1 from "./assets/tiles/1.jpg";
-import tile2 from "./assets/tiles/2.jpg";
-import tile3 from "./assets/tiles/3.jpg";
-import tile4 from "./assets/tiles/4.jpg";
-import tile5 from "./assets/tiles/5.jpg";
-import tile6 from "./assets/tiles/6.jpg";
-import tile7 from "./assets/tiles/7.jpg";
-import tile8 from "./assets/tiles/8.jpg";
-import tile9 from "./assets/tiles/9.jpg";
-import tile10 from "./assets/tiles/10.jpg";
-import CollectionsHelper from "./helpers/CollectionsHelper.ts";
+import tile1 from "./../assets/tiles/1.jpg";
+import tile2 from "./../assets/tiles/2.jpg";
+import tile3 from "./../assets/tiles/3.jpg";
+import tile4 from "./../assets/tiles/4.jpg";
+import tile5 from "./../assets/tiles/5.jpg";
+import tile6 from "./../assets/tiles/6.jpg";
+import tile7 from "./../assets/tiles/7.jpg";
+import tile8 from "./../assets/tiles/8.jpg";
+import tile9 from "./../assets/tiles/9.jpg";
+import tile10 from "./../assets/tiles/10.jpg";
+import CollectionsHelper from "../helpers/CollectionsHelper.ts";
 
 const tilesArray = CollectionsHelper.shuffleArray([
     tile1,
@@ -114,8 +114,8 @@ function Scene3Game() {
                                         src={tilesArray[num - 1]}
                                         alt={`Tile ${num}`}
                                         className="w-full h-full object-cover rounded-lg"
-                                        initial={{ opacity: 0, scale: 0.5, rotateY: 90 }}
-                                        animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                                        initial={{ opacity: 0, rotateY: 90 }}
+                                        animate={{ opacity: 1, rotateY: 0 }}
                                         transition={{ duration: 0.5, ease: "easeOut" }}
                                     />
                                     <motion.span
@@ -143,7 +143,7 @@ function Scene3Game() {
                 })}
             </div>
 
-            {!gameCompleted && (
+            {gameCompleted && (
                 <motion.button
                     className="mt-4 sm:p-2 md:p-4 lg:p-6 bg-white cursor-pointer text-black rounded-full shadow-lg lg:text-6xl md:text-4xl sm:text-2xl font-bold flex items-center justify-center"
                     initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
