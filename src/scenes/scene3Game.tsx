@@ -4,7 +4,6 @@ import Defaults from "../Defaults.ts";
 import {useEffect, useMemo, useState} from "react";
 import ColorHelper from "../helpers/ColorHelper.ts";
 import confetti from "canvas-confetti";
-import {FaRedo} from "react-icons/fa";
 import tile1 from "./../assets/tiles/1.jpg";
 import tile2 from "./../assets/tiles/2.jpg";
 import tile3 from "./../assets/tiles/3.jpg";
@@ -16,6 +15,7 @@ import tile8 from "./../assets/tiles/8.jpg";
 import tile9 from "./../assets/tiles/9.jpg";
 import tile10 from "./../assets/tiles/10.jpg";
 import CollectionsHelper from "../helpers/CollectionsHelper.ts";
+import RestartGame from "../components/RestartGame.tsx";
 
 const tilesArray = CollectionsHelper.shuffleArray([
     tile1,
@@ -50,6 +50,11 @@ function Scene3Game() {
     const numbers = useMemo(() => getRandomNumbers(), []);
     const [gameCompleted, setGameCompleted] = useState(false);
     const isGameOver = wrongAttemptsCount >= maxAttempts;
+
+    if (isGameOver) {
+        navigate('/game-over');
+        return null;
+    }
 
     useEffect(() => {
         if (revealed.length === 10) {
@@ -169,19 +174,7 @@ function Scene3Game() {
                 })}
             </div>
 
-            {gameCompleted && (
-                <motion.button
-                    className="mt-4 sm:p-2 md:p-4 lg:p-6 bg-white cursor-pointer text-black rounded-full shadow-lg lg:text-6xl md:text-4xl sm:text-2xl font-bold flex items-center justify-center"
-                    initial={{opacity: 0, scale: 0.5, rotate: -90}}
-                    animate={{opacity: 1, scale: 1, rotate: 0}}
-                    whileHover={{scale: 1.1, rotate: 10}}
-                    whileTap={{scale: 0.9, rotate: -10}}
-                    transition={{duration: 0.5}}
-                    onClick={() => navigate('/choose-color')}
-                >
-                    <FaRedo/>
-                </motion.button>
-            )}
+            {gameCompleted && <RestartGame/>}
 
         </motion.div>
     );
