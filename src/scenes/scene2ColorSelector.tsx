@@ -11,7 +11,7 @@ const colors = [
     "#5c5c5c",
     "#4db6ac",
     "#b0c1c5",
-    "#ffffff"
+    "#ff8a65"
 ];
 
 function Scene2ColorSelector() {

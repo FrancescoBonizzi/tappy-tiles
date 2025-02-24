@@ -18,7 +18,7 @@ function Scene5Win() {
 
             <motion.p
                 className="text-6xl font-bold mb-8"
-                initial={{scale: 0.5}}
+                initial={{scale: 0.7}}
                 animate={{ scale: 1.2, rotate: [3, -3, 0] }}
                 transition={{duration: 1.5, repeat: Infinity, ease: "easeInOut", repeatType: "mirror"}}>
                 🏆 🎉 <span className="text-6xl">EVVIVA!</span> 🎊 🥳
