@@ -188,20 +188,31 @@ const ReveledTile = ({num}: { num: number }) => {
 }
 
 const LifesIndicator = ({wrongAttemptsCount, choosenColor}: { wrongAttemptsCount: number, choosenColor: string }) => {
-    return [...Array(maxAttempts)].map((_, index) => (
-        <motion.div
-            key={index}
-            style={{
-                backgroundColor: index < wrongAttemptsCount
-                    ? ColorHelper.getDarkerColor(choosenColor, 0.6)
-                    : 'red'
-            }}
-            className={`w-8 h-8 rounded-full`}
-            initial={{scale: 1}}
-            animate={{scale: index < wrongAttemptsCount ? 0.8 : 1}}
-            transition={{duration: 0.3}}
-        />
-    ));
-}
+    return (
+        <div className="flex gap-4">
+            {[...Array(maxAttempts)].map((_, index) => {
 
+                    const isSafe = index >= wrongAttemptsCount;
+
+                    return (
+                        <motion.div
+                            key={index}
+                            style={{
+                                backgroundColor: isSafe
+                                    ? ColorHelper.getDarkerColor(choosenColor, 0.6)
+                                    : 'red'
+                            }}
+                            className="w-8 h-8 rounded-full"
+                            initial={{scale: 1}}
+                            animate={{
+                                scale: isSafe ? 1 : 1.2
+                            }}
+                            transition={{duration: 0.3}}
+                        />
+                    )
+                }
+            )}
+        </div>
+    );
+}
 export default Scene3Game;
