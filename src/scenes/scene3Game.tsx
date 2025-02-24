@@ -31,6 +31,7 @@ const tilesArray = CollectionsHelper.shuffleArray([
 ]);
 
 const maxAttempts = 3;
+const errorColor = '#ff0059';
 
 function Scene3Game() {
     const location = useLocation();
@@ -108,13 +109,12 @@ function Scene3Game() {
                     const isRevealed = revealed.includes(num);
                     const isWrong = wrongAttempts.includes(num);
                     const reveleadColor = 'transparent';
-                    const wrongColor = 'red';
                     const hiddenColor = ColorHelper.getDarkerColor(choosenColor, 0.6);
 
                     const tileColor = isRevealed
                         ? reveleadColor
                         : isWrong
-                            ? wrongColor
+                            ? errorColor
                             : hiddenColor;
 
                     const shadowClass = isRevealed ? null : 'shadow-lg';
@@ -200,7 +200,7 @@ const LifesIndicator = ({wrongAttemptsCount, choosenColor}: { wrongAttemptsCount
                             style={{
                                 backgroundColor: isSafe
                                     ? ColorHelper.getDarkerColor(choosenColor, 0.6)
-                                    : 'red',
+                                    : errorColor,
                                 boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.5)'
                             }}
                             className="w-8 h-8 rounded-lg"
