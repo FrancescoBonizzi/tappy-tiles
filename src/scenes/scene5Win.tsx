@@ -17,11 +17,13 @@ function Scene5Win() {
             transition={{duration: 0.5}}>
 
             <motion.p
-                className="text-6xl font-bold mb-8"
+                className="text-6xl mb-8"
                 initial={{scale: 0.7}}
                 animate={{ scale: 1.2, rotate: [3, -3, 0] }}
                 transition={{duration: 1.5, repeat: Infinity, ease: "easeInOut", repeatType: "mirror"}}>
-                🏆 🎉 <span className="text-6xl">EVVIVA!</span> 🎊 🥳
+                <motion.p className="text-6xl mb-8 font-playful">
+                    🥳 🎊  EVVIVA!  🏆 🎈
+                </motion.p>
             </motion.p>
 
             <RestartButton/>

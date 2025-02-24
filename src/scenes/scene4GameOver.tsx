@@ -10,11 +10,11 @@ function Scene4GameOver() {
             transition={{duration: 0.5}}>
 
             <motion.p
-                className="text-5xl font-bold mb-8"
+                className="text-5xl font-bold mb-8 font-playful"
                 initial={{scale: 0.5}}
                 animate={{scale: 1.2}}
                 transition={{duration: 0.5, yoyo: Infinity}}>
-                😢 Ops! Riproviamo?
+                😢 ❌ 💔 Ops! Riproviamo?
             </motion.p>
 
             <RestartButton/>
