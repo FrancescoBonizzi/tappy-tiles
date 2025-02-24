@@ -86,7 +86,7 @@ function Scene3Game() {
 
     return (
         <motion.div
-            className="flex flex-col items-center justify-center h-screen text-white text-center"
+            className="flex flex-col items-center justify-center min-h-screen text-white text-center"
             initial={{opacity: 0, backgroundColor: Defaults.backgroundColor}}
             animate={{opacity: 1, backgroundColor: choosenColor}}
             exit={{opacity: 0}}
