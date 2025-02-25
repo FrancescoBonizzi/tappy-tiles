@@ -30,7 +30,7 @@ function Scene2ColorSelector() {
             animate={{opacity: 1}}
             exit={{opacity: 0}}
             transition={{duration: 0.5}}>
-            <h1 className="text-4xl font-playful mb-8">Scegli il tuo colore preferito</h1>
+            <h1 className="text-4xl font-playful mb-8">Scegli un colore!</h1>
             <div className="grid grid-cols-3 gap-4">
                 {colors.map((color) => (
                     <motion.div

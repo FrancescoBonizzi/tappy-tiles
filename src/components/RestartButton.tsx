@@ -8,7 +8,7 @@ const RestartButton = () => {
 
     return (
         <motion.button
-            className="mt-4 p-2 sm:p-3 md:p-4 lg:p-6 bg-white cursor-pointer text-black rounded-full shadow-lg text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold flex items-center justify-center"
+            className="mt-4 p-3 sm:p-3 md:p-4 lg:p-6 bg-white cursor-pointer text-black rounded-full shadow-lg text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-bold flex items-center justify-center"
             initial={{scale: 0.5}}
             animate={{
                 opacity: 1.5,
