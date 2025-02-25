@@ -19,10 +19,10 @@ function Scene5Win() {
             <motion.p
                 className="text-6xl mb-8"
                 initial={{scale: 0.7}}
-                animate={{ scale: 1.2, rotate: [3, -3, 0] }}
+                animate={{ scale: 1, rotate: [3, -3, 0] }}
                 transition={{duration: 1.5, repeat: Infinity, ease: "easeInOut", repeatType: "mirror"}}>
                 <motion.p className="text-6xl mb-8 font-playful">
-                    🥳 🎊  EVVIVA!  🏆 🎈
+                    🥳 🎊 🏆 🎈<br />EVVIVA!
                 </motion.p>
             </motion.p>
 

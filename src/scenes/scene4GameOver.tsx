@@ -11,9 +11,8 @@ function Scene4GameOver() {
 
             <motion.p
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 font-playful text-center"
-                initial={{scale: 0.5}}
-                animate={{scale: 1.2}}
-                transition={{duration: 0.5, yoyo: Infinity}}>
+                animate={{y: [0, -10, 0]}}
+                transition={{duration: 0.5, repeatType: "loop", ease: "linear", repeat: Infinity}}>
 
                 Ops!<br/>😢 ❌ 💔<br/>Riproviamo?
 
