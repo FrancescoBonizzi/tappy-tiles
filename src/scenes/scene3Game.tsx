@@ -79,6 +79,11 @@ function Scene3Game() {
             setRevealed([...revealed, num]);
             setCurrentNumber(currentNumber + 1);
         } else {
+
+            const isAlreadyRevelead = revealed.includes(num);
+            if (isAlreadyRevelead)
+                return;
+            
             setWrongAttemptsCount(prev => prev + 1);
             setWrongAttempts([...wrongAttempts, num]);
             setTimeout(() => setWrongAttempts(
