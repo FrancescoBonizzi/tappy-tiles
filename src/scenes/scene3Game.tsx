@@ -16,18 +16,20 @@ import tile9 from "./../assets/tiles/9.jpg";
 import tile10 from "./../assets/tiles/10.jpg";
 import CollectionsHelper from "../helpers/CollectionsHelper.ts";
 
-const tilesArray = CollectionsHelper.shuffleArray([
-    tile1,
-    tile2,
-    tile3,
-    tile4,
-    tile5,
-    tile6,
-    tile7,
-    tile8,
-    tile9,
-    tile10
-]);
+const getTilesArray = () => {
+    return CollectionsHelper.shuffleArray([
+        tile1,
+        tile2,
+        tile3,
+        tile4,
+        tile5,
+        tile6,
+        tile7,
+        tile8,
+        tile9,
+        tile10
+    ]);
+}
 
 const maxAttempts = 3;
 const errorColor = '#ff0059';
@@ -41,9 +43,10 @@ function Scene3Game() {
     const [revealed, setRevealed] = useState<number[]>([]);
     const [wrongAttempts, setWrongAttempts] = useState<number[]>([]);
     const [wrongAttemptsCount, setWrongAttemptsCount] = useState(0);
-    const numbers = useMemo(() => getRandomNumbers(), []);
     const [gameCompleted, setGameCompleted] = useState(false);
     const isGameOver = wrongAttemptsCount >= maxAttempts;
+    const tilesArray = useMemo(getTilesArray, []);
+    const numbers = useMemo(() => getRandomNumbers(), []);
 
     if (isGameOver) {
         navigate('/game-over');
@@ -127,7 +130,7 @@ function Scene3Game() {
                             onClick={() => handleTileClick(num)}>
 
                             {isRevealed
-                                ? <ReveledTile num={num}/>
+                                ? <ReveledTile num={num} tilesArray={tilesArray}/>
                                 : <HiddenTile num={num} isWrong={isWrong}/>
                             }
                         </motion.div>
@@ -158,7 +161,7 @@ const HiddenTile = ({num, isWrong}: { num: number, isWrong: boolean }) => {
     );
 }
 
-const ReveledTile = ({num}: { num: number }) => {
+const ReveledTile = ({num, tilesArray}: { num: number, tilesArray: string[] }) => {
     return (
         <div className="relative w-full h-full">
             <motion.img
