@@ -8,7 +8,7 @@ function Scene5Win() {
 
     return (
         <motion.div
-            className="absolute inset-0 flex flex-col items-center justify-center bg-opacity-90 text-white text-center"
+            className="select-none absolute inset-0 flex flex-col items-center justify-center bg-opacity-90 text-white text-center"
             style={{
                 backgroundColor: choosenColor
             }}
@@ -21,7 +21,7 @@ function Scene5Win() {
                 initial={{scale: 0.7}}
                 animate={{ scale: 1, rotate: [3, -3, 0] }}
                 transition={{duration: 1.5, repeat: Infinity, ease: "easeInOut", repeatType: "mirror"}}>
-                <motion.p className="text-6xl mb-8 font-playful">
+                <motion.p className="leading-normal text-6xl mb-8 font-playful">
                     🥳 🎊 🏆 🎈<br />EVVIVA!
                 </motion.p>
             </motion.p>

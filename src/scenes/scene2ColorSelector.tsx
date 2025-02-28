@@ -24,7 +24,7 @@ function Scene2ColorSelector() {
 
     return (
         <motion.div
-            className="flex flex-col items-center justify-center h-screen text-white text-center"
+            className="select-none flex flex-col items-center justify-center h-screen text-white text-center"
             style={{backgroundColor: Defaults.backgroundColor}}
             initial={{opacity: 0}}
             animate={{opacity: 1}}

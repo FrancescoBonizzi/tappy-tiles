@@ -83,7 +83,7 @@ function Scene3Game() {
             const isAlreadyRevelead = revealed.includes(num);
             if (isAlreadyRevelead)
                 return;
-            
+
             setWrongAttemptsCount(prev => prev + 1);
             setWrongAttempts([...wrongAttempts, num]);
             setTimeout(() => setWrongAttempts(
@@ -94,7 +94,7 @@ function Scene3Game() {
 
     return (
         <motion.div
-            className="flex flex-col items-center justify-center min-h-screen text-white text-center"
+            className="select-none flex flex-col items-center justify-center min-h-screen text-white text-center"
             initial={{opacity: 0, backgroundColor: Defaults.backgroundColor}}
             animate={{opacity: 1, backgroundColor: choosenColor}}
             exit={{opacity: 0}}

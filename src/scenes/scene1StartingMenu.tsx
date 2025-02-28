@@ -18,7 +18,7 @@ function Scene1StartingMenu() {
     return (
         <div
             onClick={handleClick}
-            className="cursor-pointer h-screen flex flex-col items-center justify-center bg-gray-900 text-white text-center">
+            className="select-none cursor-pointer h-screen flex flex-col items-center justify-center bg-gray-900 text-white text-center">
             <motion.div
                 className="flex flex-col items-center justify-center"
                 animate={{scale: [1, 1.1, 1], opacity: isFading ? 0 : 1}}
