@@ -43,19 +43,19 @@ function Scene3Game() {
     const [revealed, setRevealed] = useState<number[]>([]);
     const [wrongAttempts, setWrongAttempts] = useState<number[]>([]);
     const [wrongAttemptsCount, setWrongAttemptsCount] = useState(0);
-    const [gameCompleted, setGameCompleted] = useState(false);
-    const isGameOver = wrongAttemptsCount >= maxAttempts;
+    const [isGameCompleted, setIsGameCompleted] = useState(false);
+    const hasLost = wrongAttemptsCount >= maxAttempts;
     const tilesArray = useMemo(getTilesArray, []);
     const numbers = useMemo(() => getRandomNumbers(), []);
 
-    if (isGameOver) {
+    if (hasLost) {
         navigate('/game-over');
         return null;
     }
 
     useEffect(() => {
         if (revealed.length === 10) {
-            setGameCompleted(true);
+            setIsGameCompleted(true);
             confetti({
                 particleCount: 500,
                 spread: 120,
@@ -72,7 +72,7 @@ function Scene3Game() {
 
     const handleTileClick = (num: number) => {
 
-        if (isGameOver)
+        if (hasLost || isGameCompleted)
             return;
 
         if (num === currentNumber) {
@@ -95,7 +95,7 @@ function Scene3Game() {
             exit={{opacity: 0}}
             transition={{duration: 0.5}}>
 
-            {!gameCompleted &&
+            {!isGameCompleted &&
                 <div className="flex justify-center gap-2 mb-4">
                     <LifesIndicator
                         wrongAttemptsCount={wrongAttemptsCount}
