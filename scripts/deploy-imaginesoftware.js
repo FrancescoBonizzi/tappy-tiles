@@ -29,13 +29,22 @@ console.debug(chalk.blue.bold(`🔍 File CSS trovato: ${cssFile}`));
 if (fs.existsSync(INDEX_FILE)) {
     let html = fs.readFileSync(INDEX_FILE, 'utf-8');
 
+    // Aggiunge il template Liquid in cima
     html = `---\nlayout: null\npermalink: /tappy-tiles/\n---\n\n` + html;
-    html = html.replace(/content="{{ site\.url }}(.*?)""/g, 'content="{{ site.url }}$1"');
+
+    // ✅ Modifica <meta name="og:image"> con il valore corretto
     html = html.replace(
-        /<link rel="icon" type="image\/jpg" href="\/?tappy-tiles-logo.jpg"\/?>/g,
-        '<link rel="icon" type="image/jpg" href="{{ site.url }}/tappy-tiles/tappy-tiles-logo.jpg"/>'
+        /<meta name="og:image" content="\/?tappy-tiles-logo.jpg"\/?>/g,
+        '<meta name="og:image" content="{{ site.url }}/tappy-tiles/tappy-tiles-logo.jpg"/>'
     );
 
+    // ✅ Modifica <link rel="icon"> con il valore corretto e cambia il type in "image/png"
+    html = html.replace(
+        /<link rel="icon" type="image\/jpg" href="\/?tappy-tiles-logo.jpg"\/?>/g,
+        '<link rel="icon" type="image/png" href="{{ site.url }}/tappy-tiles/tappy-tiles-logo.jpg"/>'
+    );
+
+    // Sostituzione dei file JS e CSS con quelli generati da Vite
     if (jsFile) {
         html = html.replace(/src="\/?tappy-tiles\/assets\/[^"]+\.js"/g, `src="{{ site.url }}/tappy-tiles/assets/${jsFile}"`);
     }
