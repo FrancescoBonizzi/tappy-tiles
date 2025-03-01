@@ -29,13 +29,8 @@ console.debug(chalk.blue.bold(`🔍 File CSS trovato: ${cssFile}`));
 if (fs.existsSync(INDEX_FILE)) {
     let html = fs.readFileSync(INDEX_FILE, 'utf-8');
 
-    // Aggiungi intestazione Jekyll
     html = `---\nlayout: null\npermalink: /tappy-tiles/\n---\n\n` + html;
-
-    // Correggi doppi apici nel tag `<meta name="og:image">`
     html = html.replace(/content="{{ site\.url }}(.*?)""/g, 'content="{{ site.url }}$1"');
-
-    // Modifica i percorsi degli asset con regex migliorata
     html = html.replace(
         /<link rel="icon" type="image\/jpg" href="\/?tappy-tiles-logo.jpg"\/?>/g,
         '<link rel="icon" type="image/jpg" href="{{ site.url }}/tappy-tiles/tappy-tiles-logo.jpg"/>'
