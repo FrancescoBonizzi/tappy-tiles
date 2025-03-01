@@ -32,19 +32,18 @@ if (fs.existsSync(INDEX_FILE)) {
     // Aggiunge il template Liquid in cima
     html = `---\nlayout: null\npermalink: /tappy-tiles/\n---\n\n` + html;
 
-    // ✅ Modifica <meta name="og:image"> con il valore corretto
+    // ✅ Sostituzione diretta degli elementi statici
     html = html.replace(
-        /<meta name="og:image" content="\/?tappy-tiles-logo.jpg"\/?>/g,
+        '<meta name="og:image" content="/tappy-tiles-logo.jpg"/>',
         '<meta name="og:image" content="{{ site.url }}/tappy-tiles/tappy-tiles-logo.jpg"/>'
     );
 
-    // ✅ Modifica <link rel="icon"> con il valore corretto e cambia il type in "image/png"
     html = html.replace(
-        /<link rel="icon" type="image\/jpg" href="\/?tappy-tiles-logo.jpg"\/?>/g,
+        '<link rel="icon" type="image/jpg" href="/tappy-tiles/tappy-tiles-logo.jpg"/>',
         '<link rel="icon" type="image/png" href="{{ site.url }}/tappy-tiles/tappy-tiles-logo.jpg"/>'
     );
 
-    // Sostituzione dei file JS e CSS con quelli generati da Vite
+    // ✅ Sostituzione dei file JS e CSS con quelli generati da Vite
     if (jsFile) {
         html = html.replace(/src="\/?tappy-tiles\/assets\/[^"]+\.js"/g, `src="{{ site.url }}/tappy-tiles/assets/${jsFile}"`);
     }
