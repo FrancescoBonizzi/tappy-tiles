@@ -7,11 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy-imaginesoftware": "npm run build && node scripts/deploy-imaginesoftware.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.8",
     "canvas-confetti": "^1.9.3",
+    "chalk": "^5.4.1",
     "eslint-plugin-react": "^7.37.4",
     "motion": "^12.4.7",
     "react": "^19.0.0",
