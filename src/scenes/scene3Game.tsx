@@ -15,6 +15,7 @@ import tile8 from "./../assets/tiles/8.jpg";
 import tile9 from "./../assets/tiles/9.jpg";
 import tile10 from "./../assets/tiles/10.jpg";
 import CollectionsHelper from "../helpers/CollectionsHelper.ts";
+import {GameSounds, useGameSound} from "../hooks/useGameSound.ts";
 
 const getTilesArray = () => {
     return CollectionsHelper.shuffleArray([
@@ -47,8 +48,10 @@ function Scene3Game() {
     const hasLost = wrongAttemptsCount >= maxAttempts;
     const tilesArray = useMemo(getTilesArray, []);
     const numbers = useMemo(() => getRandomNumbers(), []);
+    const sounds = useGameSound();
 
     if (hasLost) {
+        sounds.play(GameSounds.LOST);
         navigate('/game-over');
         return null;
     }
@@ -65,6 +68,7 @@ function Scene3Game() {
                 ticks: 500,
             });
             setTimeout(() => {
+                sounds.play(GameSounds.WON);
                 navigate(`/win?color=${choosenColorWithouthHash}`);
             }, 2000);
         }
@@ -74,6 +78,8 @@ function Scene3Game() {
 
         if (hasLost || isGameCompleted)
             return;
+
+        sounds.play(TilesSoundsMap[num]);
 
         if (num === currentNumber) {
             setRevealed([...revealed, num]);
@@ -218,4 +224,18 @@ const LifesIndicator = ({wrongAttemptsCount, choosenColor}: { wrongAttemptsCount
         </div>
     );
 }
+
+const TilesSoundsMap: Record<number, GameSounds> = {
+    1: GameSounds.SOUND_1,
+    2: GameSounds.SOUND_2,
+    3: GameSounds.SOUND_3,
+    4: GameSounds.SOUND_4,
+    5: GameSounds.SOUND_5,
+    6: GameSounds.SOUND_6,
+    7: GameSounds.SOUND_7,
+    8: GameSounds.SOUND_8,
+    9: GameSounds.SOUND_9,
+    10: GameSounds.SOUND_10,
+};
+
 export default Scene3Game;
