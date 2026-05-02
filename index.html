@@ -1,24 +1,81 @@
 <!doctype html>
 <html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/jpeg" href="./tappy-tiles-logo.jpg" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f97316" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://imaginesoftware.it/open-source-projects/tappy-tiles" />
+    <title>TappyTiles | Imagine Software</title>
+    <meta
+      name="description"
+      content="TappyTiles è un gioco open source di memoria e reattività: tocca le tessere nel giusto ordine, scopri i personaggi e gioca gratis sul web."
+    />
 
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="description" content="TappyTiles è un gioco open source divertente e interattivo,
-      sviluppato con React e Framer Motion.
-      Perfetto per bambini e adulti, con animazioni coinvolgenti e una grafica colorata."/>
-    <meta name="og:title" content="Tappy Tiles"/>
-    <meta name="og:description" content="TappyTiles è un gioco open source divertente e interattivo,
-      sviluppato con React e Framer Motion.
-      Perfetto per bambini e adulti, con animazioni coinvolgenti e una grafica colorata."/>
-    <meta name="og:image" content="/tappy-tiles-logo.jpg"/>
-    <link rel="icon" type="image/jpg" href="/tappy-tiles-logo.jpg"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Tappy tiles</title>
-</head>
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="TappyTiles - Gioco di memoria e reattivita" />
+    <meta
+      property="og:description"
+      content="Tocca le tessere nel giusto ordine, allena memoria e reattivita e gioca gratis con TappyTiles."
+    />
+    <meta
+      property="og:url"
+      content="https://imaginesoftware.it/open-source-projects/tappy-tiles"
+    />
+    <meta property="og:site_name" content="Imagine Software" />
+    <meta
+      property="og:image"
+      content="https://imaginesoftware.it/images/screenshots/tappy-tiles-2.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Screenshot di TappyTiles con le tessere colorate di gioco" />
 
-<body class="h-screen w-screen overflow-hidden">
-<div id="root"></div>
-<script type="module" src="/src/main.tsx"></script>
-</body>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TappyTiles - Gioco di memoria e reattivita" />
+    <meta
+      name="twitter:description"
+      content="Tocca le tessere nel giusto ordine, allena memoria e reattivita e gioca gratis con TappyTiles."
+    />
+    <meta
+      name="twitter:image"
+      content="https://imaginesoftware.it/images/screenshots/tappy-tiles-2.png"
+    />
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "TappyTiles",
+        "description": "TappyTiles è un gioco open source di memoria e reattività: tocca le tessere nel giusto ordine, scopri i personaggi e divertiti con animazioni colorate.",
+        "url": "https://imaginesoftware.it/tappy-tiles",
+        "image": "https://imaginesoftware.it/images/screenshots/tappy-tiles-2.png",
+        "genre": "Puzzle",
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game",
+        "operatingSystem": "Web",
+        "author": {
+          "@type": "Person",
+          "name": "Francesco Bonizzi",
+          "url": "https://imaginesoftware.it"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Imagine Software",
+          "url": "https://imaginesoftware.it"
+        },
+        "inLanguage": "it",
+        "isAccessibleForFree": true
+      }
+    </script>
+  </head>
+
+  <body class="h-screen w-screen overflow-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
